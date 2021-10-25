@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- formulario registro -->
+    <div class="modal fade" id="registro" tabindex="-1" aria-labelledby="titulo" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo" >Registrar nuevo médico</h5>
+                    <button type=" button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div id="wrapper" class="clearfix">
+                        <div class="well">
+                            <form id="singleUploadForm" name="singleUploadForm"  action="php/db/registro.php" method="post" >
+                                <div class="form-horizontal">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="nombre">Nombre <span style="color: red;">*</span></label>
+                                            <input type="text" class="form-control" id="name" ng-model="text"
+                                                ng-minlength="3" placeholder="Ingrese su nombre completo" name="name" required >
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="paswd">Contraseña <span style="color: red;">*</span></label>
+                                            <input type="password" class="form-control" id="paswd" ng-model="password"
+                                                ng-minlength="3" placeholder="Ingrese una contraseña" name="paswd" required >
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="cedula">Cédula <span style="color: red;">*</span></label>
+                                            <input type="number" class="form-control" id="cedula" ng-model="text"
+                                                ng-minlength="3" placeholder="Identificación" name="cedula" required >
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="telefono">Télefono <span style="color: red;">*</span></label>
+                                            <input type="number" class="form-control" id="telefono" ng-model="text"
+                                                ng-minlength="7"  maxlength="10" placeholder="Teléfono o celular" name="telefono" required />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="genero">Género <span style="color: red;">*</span></label>
+                                            <select class="form-control" id="genero" name="genero" >
+                                                <option>Masculino</option>
+                                                <option>Femenino</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="nacimiento">Fecha de nacimiento  <span style="color: red;">*</label>
+                                            <input type="date" ng-model="date" id="nacimiento" class="form-control"
+                                                max="asd" name="nacimiento" required>
+                                        </div>
+
+                                        <div>
+                                            <label for="*"><br><span style="color: red;"> *</span> Campos
+                                                obligatorios</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" id="enviar" class="btn btn-primary">Registrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- formulario login -->
+    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="titulo" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo">Iniciar sesión</h5>
+                    <button type=" button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div id="wrapper" class="clearfix">
+                        <div class="well">
+                            <form id="formLogin" name="formLogin" action="php/inicio.php" method="POST" > 
+                                <div class="form-horizontal">
+                                    
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <label for="loginCC">Cédula</label>
+                                            <input type="number" class="form-control" id="loginCC" ng-model="text"
+                                                ng-minlength="8" placeholder="Ingrese su cédula" name="loginCC" required >
+                                        </div>
+                                    </div>
+                                    
+                                    <br><br>
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <label for="loginPwd">Contraseña</label>
+                                            <input type="password" class="form-control" id="loginPwd" name="loginPwd" ng-model="password"
+                                                ng-minlength="3" placeholder="Ingrese su contraseña" required >
+                                        </div>
+
+                                    </div><br>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" id="ingresar" class="btn btn-primary">Ingresar</button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.6.0.js"></script>
+</body>
+
+</html>
