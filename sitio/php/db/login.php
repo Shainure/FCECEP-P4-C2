@@ -50,7 +50,7 @@ class Login
             $this->setIngreso(0);
         } else {
             $this->setIngreso(1);
-            $this->setUserName("login: ".$primerRegistro['nombre']);
+            $this->setUserName($primerRegistro['nombre']);
             
         }
 

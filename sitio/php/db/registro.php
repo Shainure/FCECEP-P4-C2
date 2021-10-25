@@ -12,14 +12,6 @@ $genero = $_REQUEST["genero"];
 $nacimiento = $_REQUEST["nacimiento"];
 
 
-/*echo "nombre: " . $nombre . "<br>";
-echo $pwd  . "<br>";
-echo $cedula . "<br>";
-
-echo $telefono . "<br>";
-echo $genero . "<br>";
-echo $nacimiento . "<br>";*/
-
 $conexion = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 $sql = "INSERT INTO medicos VALUES (null, '" . $nombre . "', '" . $pwd . "', '" . $cedula . "', '"

@@ -144,6 +144,192 @@
     </div>
 
 
+
+
+    <!-- formulario paciente -->
+    <div class="modal fade" id="paciente" tabindex="-1" aria-labelledby="titulo" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo" >Registrar nuevo paciente</h5>
+                    <button type=" button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div id="wrapper" class="clearfix">
+                        <div class="well">
+                            <form id="formPaciente" name="formPaciente"  action="db/registroPaciente.php" method="post" >
+                                <div class="form-horizontal">
+
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <label for="cedula">Cédula / T.I. <span style="color: red;">*</span></label>
+                                            <input type="number" class="form-control" id="cedula" ng-model="text"
+                                                ng-minlength="3" placeholder="Identificación" name="cedula" required >
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="nombre">Nombre <span style="color: red;">*</span></label>
+                                            <input type="text" class="form-control" id="nombre" ng-model="text"
+                                                ng-minlength="3" placeholder="Nombre completo" name="nombre" required >
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="genero">Género <span style="color: red;">*</span></label>
+                                            <select class="form-control" id="genero" name="genero" required>
+                                                <option>Masculino</option>
+                                                <option>Femenino</option>
+                                            </select>
+                                        </div>                                        
+                                    </div>
+
+                                    <br>
+                                    
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <label for="direccion">Dirección <span style="color: red;">*</span></label>
+                                            <input type="text" class="form-control" id="direccion" ng-model="text"
+                                                ng-minlength="3" placeholder="Dirección del paciente" name="direccion" required >
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="departamento">Departamento <span style="color: red;">*</span></label>
+                                            <input type="text" class="form-control" id="departamento" ng-model="text"
+                                                ng-minlength="3" placeholder="Dirección / Dpto" name="departamento" required >
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="ciudad">Ciudad <span style="color: red;">*</span></label>
+                                            <input type="text" class="form-control" id="ciudad" ng-model="text"
+                                                ng-minlength="3" placeholder="Dirección / Ciudad" name="ciudad" required >
+                                        </div>
+
+                                    </div>
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="telefono">Télefono <span style="color: red;">*</span></label>
+                                            <input type="number" class="form-control" id="telefono" ng-model="text"
+                                                ng-minlength="7"  maxlength="10" placeholder="Teléfono o celular" name="telefono" required />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="email">e-Mail <span style="color: red;">*</span></label>
+                                            <input type="text" class="form-control" id="email" ng-model="text"
+                                                ng-minlength="3" placeholder="e-Mail del paciente" name="email" required >
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="nacimiento">Fecha de nacimiento  <span style="color: red;">*</label>
+                                            <input type="date" ng-model="date" id="nacimiento" class="form-control"
+                                                max="asd" name="nacimiento" required>
+                                        </div>
+
+                                        <div>
+                                            <label for="*"><br><span style="color: red;"> *</span> Campos
+                                                obligatorios</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" id="enviar" class="btn btn-primary">Registrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- formulario registrar consulta -->
+    <div class="modal fade" id="consulta" tabindex="-1" aria-labelledby="titulo" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo" >Nueva consulta médica</h5>
+                    <button type=" button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div id="wrapper" class="clearfix">
+                        <div class="well">
+                            <form id="formConsulta" name="formConsulta"  action="db/registroConsulta.php" method="post" >
+                                <div class="form-horizontal">
+
+                                    <div class="row">
+
+                                        <div class="col-md-8">
+                                            <label for="cedula">Cédula / T.I. <span style="color: red;">*</span></label>
+                                            <input type="number" class="form-control" id="cedula" ng-model="text"
+                                                ng-minlength="3" placeholder="Identificación del paciente" name="cedula" required >
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="fechConsulta">Fecha consulta</label>
+                                            <input type="date" ng-model="date" id="fechConsulta" class="form-control"
+                                                name="fechConsulta" value="" readonly>
+                                        </div>                                       
+                                        
+                                    </div>
+
+                                    <br>
+                                    
+                                    <div class="row">
+
+                                        <div class="col-md-12" syle="margin-top:5px;">
+                                            <label for="detalles">Descripción <span
+                                                    style="color: red;">*</span></label>
+                                            <textarea class="form-control" id="detalles" rows="6" maxlength="500"
+                                                    placeholder="Detalles de la consulta" name="detalles" required></textarea>
+                                        </div>                                        
+
+                                    </div>
+
+                                    <br>
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            <label for="medico">Médico que atiende <span style="color: red;">*</span></label>
+                                            <input type="text" class="form-control" id="medico" ng-model="text"
+                                                name="medico" readonly >
+                                        </div>                                        
+
+                                        <div>
+                                            <label for="*"><br><span style="color: red;"> *</span> Campos
+                                                obligatorios</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" id="enviar" class="btn btn-primary">Registrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.6.0.js"></script>
 </body>
