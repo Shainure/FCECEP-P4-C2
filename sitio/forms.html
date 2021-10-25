@@ -330,6 +330,92 @@
     </div>
 
 
+
+
+
+    <!-- formulario ver detalles -->
+    <div class="modal fade" id="verInfo" tabindex="-1" aria-labelledby="titulo" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo" >Detalles de consulta médica</h5>
+                    <button type=" button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div id="wrapper" class="clearfix">
+                        <div class="well">
+                            <form id="formDetalles" name="formDetalles">
+                                <div class="form-horizontal">
+
+                                    <div class="row">                                       
+
+                                        <div class="col-md-4">
+                                            <label for="verCedula">Cédula / T.I. paciente</label>
+                                            <input type="number" class="form-control" id="verCedula" ng-model="text"
+                                                name="verCedula" readonly>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="verNombre">Nombre paciente</label>
+                                            <input type="text" class="form-control" id="verNombre" ng-model="text"
+                                                name="verNombre" readonly>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="verFecha">Fecha consulta</label>
+                                            <input type="date" ng-model="date" id="verFecha" class="form-control"
+                                                name="verFecha" value="" readonly>
+                                        </div>                                       
+                                        
+                                    </div>
+
+                                    <br>
+                                    
+                                    <div class="row">
+
+                                        <div class="col-md-12" syle="margin-top:5px;">
+                                            <label for="verDetalles">Descripción</label>
+                                            <textarea class="form-control" id="verDetalles" rows="6" maxlength="500"
+                                                name="verDetalles" readonly></textarea>
+                                        </div>                                        
+
+                                    </div>
+
+                                    <br>
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-8">
+                                            <label for="verMedico">Médico que lo atendió</label>
+                                            <input type="text" class="form-control" id="verMedico" ng-model="text"
+                                                name="verMedico" readonly >
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <label for="verID">ID Consulta</label>
+                                            <input type="number" class="form-control" id="verID" ng-model="text"
+                                                name="verID" readonly>
+                                        </div>
+
+
+                                    </div> 
+                                    <br><br>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.6.0.js"></script>
 </body>

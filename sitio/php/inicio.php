@@ -1,12 +1,8 @@
 <?php
 #incluye el archivo que contiene la clase
 include_once("db/login.php");
+include_once("db/cargarTabla.php");
 
-
-function phpAlert($msg)
-{
-    echo '<script type="text/javascript">alert("' . $msg . '")</script>';
-}
 
 $var = isset($_GET['var']) ? $_GET['var'] : false;
 
@@ -24,10 +20,8 @@ if ($var == false) {
     $newLogin->login();
 
     echo '<script type="text/JavaScript"> 
-            localStorage.setItem("usuario", " '.$newLogin->getUserName() .' ");
-        </script>'
-    ;
-
+            localStorage.setItem("usuario", " ' . $newLogin->getUserName() . ' ");
+        </script>';
 
     if ($newLogin->getIngreso() == 0) {
         header('Location: ../index.php?msg=0');
@@ -35,6 +29,10 @@ if ($var == false) {
     }
 }
 
+$newLogin = new cargarDatos();
+
+$newLogin->cargar();
+$array = $newLogin->getListado();
 
 ?>
 
@@ -50,6 +48,9 @@ if ($var == false) {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+
 </head>
 
 <body>
@@ -63,37 +64,64 @@ if ($var == false) {
             <h4>Salamanca Lozano Dilan</h4>
             <hr class="my-4">
             <div class="col-sm-offset-4 col-sm-10">
-                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#paciente">Registrar paciente</button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#paciente">Registrar paciente</button>
 
-                <button type="button" id="cons" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#consulta">Registrar consulta médica</button>
-
-                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#paciente">Mostrar consultas</button>
+                <button type="button" id="cons" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#consulta">Registrar consulta médica</button>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="card">
+        <div class="card ">
 
-            <div class="card-header">
-                <span class="text-primary" id="headerInfo">Panel de control</span>
+            <div class="card text-white bg-info">
+                <div class="card-header">
+                    <span id="headerInfo">Panel de control</span>
+                </div>
+            </div>
 
             <div class="card-body">
-
-
-                <div class="d-grid gap-2 col-6 mx-auto">
-
-                    <button type="button" id="sign" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registro">Registro (nuevo médico)</button>
-                </div>
+                <table id="tabla" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>ID Consulta</th>
+                            <th>CC paciente</th>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Detalles</th>
+                            <th>Médico</th>
+                            <th>Más</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($array as $fila) { ?>
+                            <tr>
+                                <td><?php echo utf8_encode($fila['idConsulta']) ?> </td>
+                                <td><?php echo utf8_encode($fila['cedula']) ?> </td>
+                                <td><?php echo utf8_encode($fila['nombre']) ?> </td>
+                                <td><?php echo utf8_encode($fila['fechConsulta']) ?> </td>
+                                <td><?php echo substr(utf8_encode($fila['detalles']), 0, 50) . "..." ?> </td>
+                                <td><?php echo utf8_encode($fila['medico']) ?> </td>
+                                <td>
+                                    <div id="<?php echo $fila['idConsulta'] ?>">
+                                        <button type="button" id="cargaInfo" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#verInfo">Ver</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        <?php echo $array[0]['detalles']; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
+    <br><br><br>
 
 
     <div id="formPaciente"></div>
     <div id="formConsulta"></div>
-
+    <div id="formDetalles"></div>
 
 
     <!-- Optional JavaScript -->
@@ -108,7 +136,8 @@ if ($var == false) {
     <script>
         $('#formPaciente').load('../forms.html #paciente');
         $('#formConsulta').load('../forms.html #consulta');
-        
+        $('#formDetalles').load('../forms.html #verInfo');
+
         document.getElementById("headerInfo").innerHTML = "Panel de control - " + localStorage.getItem("usuario");
     </script>
 
@@ -121,9 +150,40 @@ if ($var == false) {
                 document.getElementById("fechConsulta").value = date;
                 document.getElementById("medico").value = localStorage.getItem("usuario");
             });
+            $("#tabla").DataTable();
         });
     </script>
-    
+
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>        //evento para ver más detalles botón
+        if (document.addEventListener) {
+            document.addEventListener("click", handleClick, false);
+        } else if (document.attachEvent) {
+            document.attachEvent("onclick", handleClick);
+        }
+
+        function handleClick(event) {
+            event = event || window.event;
+            var element = event.target;
+
+            if (element.id === "cargaInfo" && element.nodeName === "BUTTON") {
+                verInformacion(--element.parentNode.id);
+            }
+        }
+        
+        function verInformacion(id) {
+            datos = <?php echo json_encode($array);?> ;
+            document.getElementById("verNombre").value = datos[id]["nombre"];
+            document.getElementById("verID").value = datos[id]["idConsulta"];
+            document.getElementById("verCedula").value = datos[id]["cedula"];
+            document.getElementById("verFecha").value = datos[id]["fechConsulta"];
+            document.getElementById("verDetalles").value = datos[id]["detalles"];
+            document.getElementById("verMedico").value = datos[id]["medico"];  
+        }
+    </script>
+
 </body>
 
 </html>
