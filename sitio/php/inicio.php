@@ -3,7 +3,6 @@
 include_once("db/login.php");
 include_once("db/cargarTabla.php");
 
-
 $var = isset($_GET['var']) ? $_GET['var'] : false;
 
 if ($var == false) {
@@ -67,6 +66,11 @@ $array = $newLogin->getListado();
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#paciente">Registrar paciente</button>
 
                 <button type="button" id="cons" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#consulta">Registrar consulta médica</button>
+                
+                <a href="../index.php">
+                    <button type="button" class="btn btn-danger">Cerrar sesión</button>
+                </a>
+                 
             </div>
         </div>
     </div>
@@ -109,7 +113,6 @@ $array = $newLogin->getListado();
                                 </td>
                             </tr>
                         <?php } ?>
-                        <?php echo $array[0]['detalles']; ?>
                     </tbody>
                 </table>
             </div>
@@ -124,23 +127,12 @@ $array = $newLogin->getListado();
     <div id="formDetalles"></div>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/jquery-3.6.0.js"></script>
-
-    <script>
-        $('#formPaciente').load('../forms.html #paciente');
-        $('#formConsulta').load('../forms.html #consulta');
-        $('#formDetalles').load('../forms.html #verInfo');
-
-        document.getElementById("headerInfo").innerHTML = "Panel de control - " + localStorage.getItem("usuario");
-    </script>
-
 
     <script>
         $(document).ready(function() {
@@ -158,6 +150,13 @@ $array = $newLogin->getListado();
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 
     <script>        //evento para ver más detalles botón
+
+        $('#formPaciente').load('../forms.html #paciente');
+        $('#formConsulta').load('../forms.html #consulta');
+        $('#formDetalles').load('../forms.html #verInfo');
+
+        document.getElementById("headerInfo").innerHTML = "Panel de control - " + localStorage.getItem("usuario");
+
         if (document.addEventListener) {
             document.addEventListener("click", handleClick, false);
         } else if (document.attachEvent) {

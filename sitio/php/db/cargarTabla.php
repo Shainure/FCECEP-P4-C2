@@ -34,17 +34,10 @@ class cargarDatos
             or die(mysqli_errno($this->conexion) . " : "
                 . mysqli_error($conexion) . " | Query=" . $sql);
 
-
-        //$primerRegistro = $resultado->fetch_assoc();
-
-        //print_r($primerRegistro);
-
         $listado = array();
         while ($fila = $resultado->fetch_assoc()) {
             $listado[] = $fila;
         }
-
-        //print_r($listado);
         $this->setListado($listado);
 
         $conexion->close();

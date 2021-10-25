@@ -42,16 +42,11 @@ class Login
 
         $primerRegistro = $resultado->fetch_assoc();
 
-
-        print_r($primerRegistro);
-
-
         if (mysqli_num_rows($resultado) == 0) {
             $this->setIngreso(0);
         } else {
             $this->setIngreso(1);
-            $this->setUserName($primerRegistro['nombre']);
-            
+            $this->setUserName($primerRegistro['nombre']);            
         }
 
         $conexion->close();
